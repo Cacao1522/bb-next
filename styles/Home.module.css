@@ -16,12 +16,13 @@
 .title {
   font-size: 3em;
     color:darkblue;
+    text-align: center;
 }
 
 .titleBox {
   background-color: rgb(243, 221, 100);
   padding: 10px;
-  text-align: center;
+  text-align: right;
 }
 
 .message {
@@ -345,16 +346,6 @@
 }
 
 
-/* ボタン */
-.button:hover {
-  color: red;
-}
 
-/* title spacz */
-.titleBox {
-  text-align: right;
-}
 
-.title {
-  text-align: center;
-}
+
