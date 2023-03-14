@@ -343,4 +343,18 @@
     transform: rotate(0deg);
   }
 }
-*/
+
+
+/* ボタン */
+.button:hover {
+  color: red;
+}
+
+/* title spacz */
+.titleBox {
+  text-align: right;
+}
+
+.title {
+  text-align: center;
+}
