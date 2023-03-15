@@ -1,11 +1,11 @@
-.main {
+/*.main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   padding: 6rem;
   min-height: 100vh;
-}
+}*/
 
 .margin {
   min-height: 100vh;
@@ -39,6 +39,7 @@
     margin: 0px;
     min-height: 100vh;
     background-color: rgb(228, 238, 238);
+    display: flex;
   }
   
   .message {
@@ -46,14 +47,34 @@
     }
 
     .postarea {
-      width: 70%;
+      flex: 7;
       margin: 0 auto;
       padding: 10px;
       background-color: white;
       min-height: 100vh;
     } 
+
+    .blank {
+      flex: 1;
+    }
+    
+    .latest {
+      flex: 2;
+      padding: 20px;
+      list-style: none;
+    }
+    
+    .postlink {
+      color:blue;
+      font-size: 1.5em;
+    }
 }
 
+@media (max-width: 610px) {
+  .latest {
+    display: none;
+  }
+}
 .link {
   color:blue;
   font-size: 1.7em;
@@ -73,6 +94,8 @@
 .button:hover {
   color: red;
 }
+
+
 
 /*.description {
   display: inherit;
