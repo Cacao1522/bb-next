@@ -5,10 +5,11 @@ import "../components/fire";
 import Head from "next/head";
 import Link from "next/link";
 import classes from "../styles/Home.module.css";
+import { client } from "../libs/client";
 
 const db = firebase.firestore();
 
-export default function Home() {
+export default function Home({ blog }) {
   const mydata = [];
   let replyArray = [];
   let index = -1;
@@ -116,11 +117,14 @@ export default function Home() {
           index += 1;
 
           mydata.push(
-            <div  className={classes.post}>
+            <div className={classes.post}>
               <div>
-                {doc.name}　
-                {new Date(doc.timestamp?.toDate()).toLocaleString()}　
-                <button className={classes.button} onClick={() => ReplyBotton(doc.id, doc.index)}>
+                {doc.name}　{new Date(doc.timestamp?.toDate()).toLocaleString()}
+                　
+                <button
+                  className={classes.button}
+                  onClick={() => ReplyBotton(doc.id, doc.index)}
+                >
                   返信
                 </button>
               </div>
@@ -150,9 +154,11 @@ export default function Home() {
               </div>
             );
 
-            if (replyArray[index]) { //replyArray[index]>=1の場合
+            if (replyArray[index]) {
+              //replyArray[index]>=1の場合
               replyArray[index] += 1;
-            } else { //replyArray[index]===0の場合            
+            } else {
+              //replyArray[index]===0の場合
               replyArray[index] = 1;
             }
           }); //forEach(document2)
@@ -166,95 +172,126 @@ export default function Home() {
   }, [flag]);
 
   return (
-    <div >
+    <div>
       <Head>
         <title>C0de 掲示板</title>
-        
+
         <meta
           name="description"
           content="名工大プログラミング部C0deのWeb班が制作した質問掲示板です。"
         />
-        <meta name="google-site-verification" content="HU9359Egr_Y0kN-unK33sVKLYf1Ht5qwdVkh_ls5sRw" />
+        <meta
+          name="google-site-verification"
+          content="HU9359Egr_Y0kN-unK33sVKLYf1Ht5qwdVkh_ls5sRw"
+        />
       </Head>
       <div className={classes.titleBox}>
-      <h2 className={classes.title}>C0de 掲示板 </h2>
-      <Link className={classes.link} href="/blog">
-        Web班のブログへ
-      </Link>
+        <h2 className={classes.title}>C0de 掲示板 </h2>
+        <Link className={classes.link} href="/blog">
+          Web班のブログへ
+        </Link>
       </div>
       <div className={classes.margin}>
-      
-      <div className={classes.postarea}>
-      <p className={classes.message}>{message}</p>
-      {replyFlag ? (
-        <table>
-          <thead>
-            <tr>{data.slice(0, count)}</tr>
-          </thead>
-        </table>
-      ) : (
-        <table>
-          <thead>
-            <tr>{data}</tr>
-          </thead>
-        </table>
-      )}
+      <div className={classes.blank} />
+        <div className={classes.postarea}>
+          <p className={classes.message}>{message}</p>
+          {replyFlag ? (
+            <table>
+              <thead>
+                <tr>{data.slice(0, count)}</tr>
+              </thead>
+            </table>
+          ) : (
+            <table>
+              <thead>
+                <tr>{data}</tr>
+              </thead>
+            </table>
+          )}
 
-      {replyFlag && (
-        <div>
+          {replyFlag && (
+            <div>
+              <p>
+                お名前　
+                <input
+                  type="text"
+                  value={replyName}
+                  maxLength="20"
+                  onChange={onChangeReplyName}
+                />
+              </p>
+              <p>
+                返信内容　
+                <textarea
+                  className={classes.textarea}
+                  value={replyText}
+                  onChange={onChangeReplyText}
+                  rows="4"
+                  cols="50"
+                  maxLength="400"
+                />
+              </p>
+              <button onClick={addReplyText} className={classes.button}>
+                返信する
+              </button>
+
+              <table>
+                <thead>
+                  <tr>{data.slice(count, data.length)}</tr>
+                </thead>
+              </table>
+            </div>
+          )}
+
           <p>
             お名前　
             <input
               type="text"
-              value={replyName}
+              value={name}
               maxLength="20"
-              onChange={onChangeReplyName}
+              onChange={onChangeName}
             />
           </p>
           <p>
-            返信内容　
+            投稿内容　
             <textarea
               className={classes.textarea}
-              value={replyText}
-              onChange={onChangeReplyText}
+              value={text}
+              onChange={onChangeText}
               rows="4"
               cols="50"
               maxLength="400"
             />
           </p>
-          <button onClick={addReplyText} className={classes.button}>返信する</button>
-
-          <table>
-            <thead>
-              <tr>{data.slice(count, data.length)}</tr>
-            </thead>
-          </table>
+          <button className={classes.button} onClick={addText}>
+            投稿する
+          </button>
         </div>
-      )}
 
-      <p>
-        お名前　
-        <input
-          type="text"
-          value={name}
-          maxLength="20"
-          onChange={onChangeName}
-        />
-      </p>
-      <p>
-        投稿内容　
-        <textarea
-          className={classes.textarea}
-          value={text}
-          onChange={onChangeText}
-          rows="4"
-          cols="50"
-          maxLength="400"
-        />
-      </p>
-      <button className={classes.button} onClick={addText}>投稿する</button>
+        <ul className={classes.latest}>
+          最新のブログ
+          {blog.map((blog) => (
+            <li className={classes.card} key={blog.id}>
+              <div>
+                <Link className={classes.postlink} href={`/blog/${blog.id}`}>
+                  {blog.title}
+                </Link>
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
-    </div>
     </div>
   );
 }
+
+// データをテンプレートに受け渡す部分の処理を記述します
+export const getStaticProps = async () => {
+  const data = await client.get({ endpoint: "blog" });
+
+  return {
+    props: {
+      blog: data.contents,
+    },
+  };
+};
