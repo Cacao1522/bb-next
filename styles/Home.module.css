@@ -118,6 +118,7 @@
   margin-top: 1rem;
   font-size: 1rem;
   vertical-align: middle;
+  max-width: 100%;
 }
 
 /* ボタン */
