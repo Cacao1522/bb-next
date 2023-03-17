@@ -13,7 +13,7 @@ export default function BlogId({ blog }) {
       <div className={classes.titleBox}>  
       <h1 className={classes.title}>Web班のブログ</h1>
       <Link className={classes.link} href="/blog">
-        戻る
+        一覧へ戻る
       </Link>
       </div>
       <div className={classes.main}>

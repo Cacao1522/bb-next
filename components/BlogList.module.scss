@@ -9,11 +9,13 @@
   list-style: none;
   min-height: 100vh;
 }
- .title {
+
+.title {
   font-size: 2.5em;
   color:darkblue;
-  
- }
+  text-align: center;
+}
+
 .titleBox {
   background-color: rgb(243, 221, 100);
   padding: 10px;
@@ -49,13 +51,17 @@
   font-size: 1.2em;
 }
 
-@media (min-width: 610px) {
+@media (min-width: 700px) {
   .margin {
     margin: 0px;
     min-height: 100vh;
     background-color: rgb(228, 238, 238);
   }
 
+  .titleBox {
+    padding: 10px 30px;
+    text-align: right;
+  }
     .main {
       width: 70%;
       margin: 0 auto;
