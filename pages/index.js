@@ -210,26 +210,26 @@ export default function Home({ blog }) {
           )}
 
           {replyFlag && (
-            <div>
-              <p>
-                お名前　
-                <input
+            <div className={classes.formarea}>
+              <p><label>
+                お名前　　
+                <input className={classes.text}
                   type="text"
                   value={replyName}
                   maxLength="20"
                   onChange={onChangeReplyName}
-                />
+                /></label>
               </p>
-              <p>
+              <p><label>
                 返信内容　
-                <textarea
+                <textarea 
                   className={classes.textarea}
                   value={replyText}
                   onChange={onChangeReplyText}
                   rows="4"
                   cols="50"
                   maxLength="400"
-                />
+                /></label>
               </p>
               <button onClick={addReplyText} className={classes.button}>
                 返信する
@@ -243,16 +243,17 @@ export default function Home({ blog }) {
             </div>
           )}
 
-          <p>
-            お名前　
-            <input
+          <div className={classes.formarea}>
+          <p ><label>
+            お名前　　
+            <input className={classes.text}
               type="text"
               value={name}
               maxLength="20"
               onChange={onChangeName}
-            />
+            /></label>
           </p>
-          <p>
+          <p><label>
             投稿内容　
             <textarea
               className={classes.textarea}
@@ -261,18 +262,19 @@ export default function Home({ blog }) {
               rows="4"
               cols="50"
               maxLength="400"
-            />
+            /></label>
           </p>
           <button className={classes.button} onClick={addText}>
             投稿する
           </button>
+          </div>
         </div>
 
         <ul className={classes.latest}>
-          最新のブログ
+          <div className={classes.postheader}>最新のブログ</div>
           {blog.map((blog) => (
             <li className={classes.card} key={blog.id}>
-              <div>
+              <div className={classes.postmargin}>
                 <Link className={classes.postlink} href={`/blog/${blog.id}`}>
                   {blog.title}
                 </Link>
