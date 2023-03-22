@@ -21,16 +21,19 @@ export default function Blog({ blog }) {
       </div>
       <ul className={classes.main}>
         {blog.map((blog) => (
-          <li className={classes.card} key={blog.id}>
-            <div>
-              <Link className={classes.postlink} href={`/blog/${blog.id}`}>
+          <li key={blog.id}>
+            
+              <Link href={`/blog/${blog.id}`}>
+              <div className={classes.card}>
+                <span className={classes.postlink}>
                 {blog.title}
-              </Link>
-              　
+                </span>
               <span className={classes.date}>
                 {new Date(blog.publishedAt).toLocaleDateString()}
               </span>
-            </div>
+              </div>
+              </Link>
+            
           </li>
         ))}
       </ul>

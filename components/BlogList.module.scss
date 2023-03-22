@@ -5,7 +5,7 @@
 }
 
 .main {
-  padding: 10px;
+  padding: 30px;
   list-style: none;
   min-height: 100vh;
 }
@@ -26,22 +26,22 @@
     color:blue;
     font-size: 1.7em;
     text-decoration: underline;
+    &:hover {
+      text-decoration: none;
+    }
 }
 
 .postlink {
   color:blue;
   font-size: 1.7em;
-}
-
-
-.link:hover {
-  text-decoration: none;
+  margin-right: 10px;
 }
 
 .card {
     padding: 1rem 1.2rem;
-    border-radius: var(--border-radius);
-    background: rgba(var(--card-rgb), 0);
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: #eee;
     border: 1px solid rgba(var(--card-border-rgb), 0);
     transition: background 200ms, border 200ms;
   }
@@ -65,9 +65,7 @@
     .main {
       width: 70%;
       margin: 0 auto;
-      padding: 10px;
       background-color: white;
-      min-height: 100vh;
     } 
 }
 /* Mobile */

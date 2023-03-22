@@ -70,7 +70,11 @@
       padding: 20px;
       list-style: none;
     }
-    
+    .latestarea {
+      border: 5px solid #eeb565;
+      border-radius: 10px;
+      padding: 20px;
+    }
     .postheader {
       font-size: 1.5em;
     }
@@ -106,16 +110,16 @@
 }
 
 .formarea {
-  margin-left: 15px;
+  margin: 0 15px;
 }
 .text {
   margin-top: 1rem;
-  
-  font-size: 1rem;
+  /* height: 25px; */
+  font-size: 1.2rem;
 }
 
 .textarea {
-  margin-top: 1rem;
+  margin: 1rem 0;
   font-size: 1rem;
   vertical-align: middle;
   max-width: 100%;
@@ -124,7 +128,32 @@
 /* ボタン */
 /*.button {
 }*/
-
+.name {
+  border-top: 1px solid #666;
+}
+.button {
+  width: 50px;
+  height: 30px;
+}
 .button:hover {
   color: red;
+}
+.postbutton{
+  box-sizing: border-box;
+  border: 1px solid #666;
+  margin-bottom: 10px;
+  width: 90px;
+  height: 40px;
+  font-size: 1rem;
+  color: #ffffff;
+  background-color: #0A6EFF;
+}
+.postbutton:hover {
+  background-color: #3258ff;
+}
+.postbutton:active {
+  background-color: #1478FF;
+}
+.postbutton:focus {
+  background-color: #3258ff;
 }
