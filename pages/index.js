@@ -196,22 +196,18 @@ export default function Home({ blog }) {
         <div className={classes.postarea}>
           <p className={classes.message}>{message}</p>
           {replyFlag ? (
-            <table>
-              <thead>
-                <tr>{data.slice(0, count)}</tr>
-              </thead>
-            </table>
+
+                <div>{data.slice(0, count)}</div>
+
           ) : (
-            <table>
-              <thead>
-                <tr>{data}</tr>
-              </thead>
-            </table>
+
+                <div>{data}</div>
+
           )}
 
           {replyFlag && (
             <div className={classes.formarea}>
-              <p><label>
+              <p className={classes.name}><label>
                 お名前　　
                 <input className={classes.text}
                   type="text"
@@ -231,20 +227,18 @@ export default function Home({ blog }) {
                   maxLength="400"
                 /></label>
               </p>
-              <button onClick={addReplyText} className={classes.button}>
+              <button onClick={addReplyText} className={classes.postbutton}>
                 返信する
               </button>
 
-              <table>
-                <thead>
-                  <tr>{data.slice(count, data.length)}</tr>
-                </thead>
-              </table>
+
+                  <div>{data.slice(count, data.length)}</div>
+
             </div>
           )}
 
           <div className={classes.formarea}>
-          <p ><label>
+          <p className={classes.name}><label>
             お名前　　
             <input className={classes.text}
               type="text"
@@ -264,13 +258,14 @@ export default function Home({ blog }) {
               maxLength="400"
             /></label>
           </p>
-          <button className={classes.button} onClick={addText}>
+          <button className={classes.postbutton} onClick={addText}>
             投稿する
           </button>
           </div>
         </div>
 
         <ul className={classes.latest}>
+          <div className={classes.latestarea}>
           <div className={classes.postheader}>最新のブログ</div>
           {blog.map((blog) => (
             <li className={classes.card} key={blog.id}>
@@ -281,6 +276,7 @@ export default function Home({ blog }) {
               </div>
             </li>
           ))}
+          </div>
         </ul>
       </div>
     </div>
